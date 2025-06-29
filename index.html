@@ -5,6 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MiniApp-stope для @Crypto_Defiii</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background: linear-gradient(135deg, #0f2027, #2c5364 80%);
+        color: #fff;
+        min-height: 100vh;
+    }
+    h2 {
+        text-align: center;
+    }
+    header {
+            text-align: center;
+            padding: 2rem 1rem 1rem 1rem;
+        }
+        header h1 {
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: 1px;
+        }
+        .tg {
+            color: #30a3e6;
+        }
+        .price-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            min-width: 220px;
+            max-width: 300px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            text-align: center;
+        }
+        .card h2 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+        .card .price {
+            font-size: 1.3rem;
+            margin: 0.5rem 0;
+        }
+        .card .desc {
+            font-size: 1rem;
+            color: #ffe082;
+        }
+        .card.repost ul {
+            list-style: none;
+            padding: 0;
+            margin: 0.5rem 0 0 0;
+        }
+        .card.repost li {
+            margin: 0.2rem 0;
+            font-size: 1rem;
+        }
+        .main-btn {
+            display: block;
+            margin: 1.5rem auto 0 auto;
+            padding: 0.8rem 2.2rem;
+            font-size: 1.1rem;
+            background: #30a3e6;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .main-btn:hover {
+            background: #1e7bbf;
+        }
+        .order-form {
+            background: rgba(0,0,0,0.7);
+            border-radius: 16px;
+            max-width: 400px;
+            margin: 2rem auto 0 auto;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .order-form label {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 1rem;
+            color: #ffe082;
+        }
+        .order-form input,
+        .order-form select,
+        .order-form textarea {
+            width: 100%;
+            margin-top: 0.3rem;
+            padding: 0.5rem;
+            border-radius: 6px;
+            border: none;
+            font-size: 1rem;
+            background: #fff;
+            color: #222;
+        }
+        .order-form textarea {
+            resize: vertical;
+        }
+        .success {
+            color: #4caf50;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            margin: 2rem 0 1rem 0;
+            color: #ffe082;
+        }
+        footer a {
+            color: #30a3e6;
+            text-decoration: none;
+        }
+        @media (max-width: 700px) {
+            .price-list {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 90%;
+                min-width: unset;
+            }
+            .order-form {
+                width: 95%;
+            }
+        }
+    </style>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -71,8 +208,41 @@
         </form>
     </main>
     <footer>
-        <p>Связь: <a href="https://t.me/Crypto_Defiii" target="_blank">@Crypto_Defiii</a></p>
+        <p>тгк: <a href="https://t.me/Crypto_Defiii" target="_blank">@Crypto_Defiii</a></p>
+        <p>тгк: <a href="https://t.me/Crypto_Defiii" target="_blank">@Crypto_Defiii</a></p>
     </footer>
-    <script src="main.js"></script>
+    <script>
+        // Telegram WebApp API
+        if (window.Telegram && Telegram.WebApp) Telegram.WebApp.ready();
+
+        document.getElementById('orderBtn').onclick = function() {
+            document.getElementById('orderForm').style.display = 'flex';
+            window.scrollTo({ top: document.getElementById('orderForm').offsetTop, behavior: 'smooth' });
+        };
+
+        document.getElementById('orderForm').onsubmit = function(e) {
+            e.preventDefault();
+            // Собираем данные формы
+            const data = {
+                service: document.getElementById('service').value,
+                datetime: document.getElementById('datetime').value,
+                username: document.getElementById('username').value,
+                email: document.getElementById('email').value,
+                adtext: document.getElementById('adtext').value
+            };
+            // Отправка данных в Telegram WebApp (если открыт в Telegram)
+            if (window.Telegram && Telegram.WebApp) {
+                Telegram.WebApp.sendData(JSON.stringify(data));
+                Telegram.WebApp.close();
+            }
+            // Показываем сообщение об успехе
+            document.getElementById('formSuccess').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('orderForm').reset();
+                document.getElementById('orderForm').style.display = 'none';
+                document.getElementById('formSuccess').style.display = 'none';
+            }, 2500);
+        };
+    </script>
 </body>
 </html> 
