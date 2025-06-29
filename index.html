@@ -8,16 +8,71 @@
     <link rel="stylesheet" href="style.css">
 
 </head>
+
 <body>
-    <div class="container">
-        <h1>MiniApp для @Crypto_Defiii</h1>
-        <p>Здесь будет ваш интерфейс заказа рекламы.<br>Редактируйте этот файл для своей логики.</p>
-        <button onclick="window.Telegram.WebApp.close()">Закрыть мини-апп</button>
-    </div>
-    <script>
-        // Здесь можно работать с Telegram.WebApp
-        Telegram.WebApp.ready();
-        // Пример: Telegram.WebApp.sendData(JSON.stringify({test: 1}));
-    </script>
+    <header>
+        <h1>Crypto Defiii shop!</h1>
+    </header>
+    <h2>Покупка рекламы/репостов/совместного розогрыша</h2>
+    <main>
+        <section class="price-list">
+            <div class="card">
+                <h2>❤️‍🔥 Реклама (для каналов с ниже 300 просмотров за сутки)</h2>
+                <p class="price">2.5 тона🪙 + подарки</p>
+                <p class="desc">Топ 1 час + напоминание + закреп</p>
+            </div>
+            <div class="card">
+                <h2>⚡️ Совместный розыгрыш</h2>
+                <p class="price">2 тона🪙 + подарки</p>
+                <p class="desc">Топ 1 час + напоминание + закреп</p>
+            </div>
+            <div class="card repost">
+                <h2>📨 Репост</h2>
+                <ul>
+                    <li>24ч — <b>2.5 тона🪙</b> (1ч топ)</li>
+                    <li>12ч — <b>2.2 тона🪙</b> (1ч топ)</li>
+                    <li>6ч — <b>2 тона🪙</b> (1ч топ)</li>
+                    <li>3ч — <b>1.5 тона🪙</b> (1ч топ)</li>
+                    <li>1ч — <b>1 тона🪙</b> (1ч топ)</li>
+                    <li>Ночной — <b>1.5 тона🪙</b> (10ч топ)</li>
+                </ul>
+            </div>
+        </section>
+        <button id="orderBtn" class="main-btn">Заказать рекламу</button>
+        <form id="orderForm" class="order-form" style="display:none;">
+            <h2>Оставить заявку</h2>
+            <label>Услуга
+                <select id="service" required>
+                    <option value="" disabled selected>Выберите услугу</option>
+                    <option>❤️‍🔥 Реклама</option>
+                    <option>⚡️ Совместный розыгрыш</option>
+                    <option>📨 Репост 24ч</option>
+                    <option>📨 Репост 12ч</option>
+                    <option>📨 Репост 6ч</option>
+                    <option>📨 Репост 3ч</option>
+                    <option>📨 Репост 1ч</option>
+                    <option>📨 Репост ночной</option>
+                </select>
+            </label>
+            <label>Дата и время
+                <input type="datetime-local" id="datetime" required>
+            </label>
+            <label>Telegram username
+                <input type="text" id="username" placeholder="@username" required>
+            </label>
+            <label>Email
+                <input type="email" id="email" placeholder="you@email.com" required>
+            </label>
+            <label>Текст рекламы
+                <textarea id="adtext" rows="4" required></textarea>
+            </label>
+            <button type="submit" class="main-btn">Отправить заявку</button>
+            <div id="formSuccess" class="success" style="display:none;">Заявка отправлена! Мы свяжемся с вами в Telegram.</div>
+        </form>
+    </main>
+    <footer>
+        <p>Связь: <a href="https://t.me/Crypto_Defiii" target="_blank">@Crypto_Defiii</a></p>
+    </footer>
+    <script src="main.js"></script>
 </body>
 </html> 
